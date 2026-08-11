@@ -620,17 +620,179 @@
     }
 
     @media (max-width: 580px) {
-      body { padding: 8px; }
-      .masthead { grid-template-columns: 1fr; gap: 14px; padding: 26px 22px 22px; }
-      .insignia { width: 62px; height: 62px; }
-      .classification { min-width: 0; }
-      .control-deck { padding: 16px 15px; }
-      .gauge-body { grid-template-columns: 1fr; }
-      .readout { text-align: center; }
-      .solutions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .solution-panel { margin: 0 15px 16px; }
-      .solution-head { align-items: flex-start; flex-direction: column; }
-      footer { flex-direction: column; padding: 14px 18px; }
+      body { padding: 0; }
+
+      .console {
+        min-height: 100svh;
+        border-right: 0;
+        border-left: 0;
+        border-radius: 0;
+        box-shadow: inset 0 0 0 3px #10110e, inset 0 0 0 4px #3b392e;
+      }
+
+      .console::before,
+      .console::after,
+      .insignia,
+      .classification { display: none; }
+
+      .hazard-line { height: 6px; }
+
+      .masthead {
+        display: block;
+        padding: 10px 14px 9px;
+      }
+
+      .kicker {
+        margin-bottom: 4px;
+        font-size: 8px;
+        letter-spacing: .17em;
+      }
+
+      h1 {
+        font-size: 25px;
+        line-height: 1;
+        letter-spacing: .045em;
+      }
+
+      h1 span {
+        margin-top: 4px;
+        font-size: 8px;
+        letter-spacing: .14em;
+      }
+
+      .control-deck {
+        grid-template-columns: 1fr;
+        gap: 6px;
+        padding: 7px 9px 6px;
+      }
+
+      .plate-title {
+        min-height: 24px;
+        padding: 5px 8px;
+        font-size: 8px;
+        letter-spacing: .11em;
+      }
+
+      .plate-title .serial { display: none; }
+      .input-body { padding: 8px; }
+
+      label {
+        margin-bottom: 4px;
+        font-size: 9px;
+        letter-spacing: .06em;
+      }
+
+      input {
+        height: 46px;
+        padding-right: 62px;
+        font-size: 25px;
+      }
+
+      .unit { right: 13px; font-size: 10px; }
+
+      .button-row {
+        gap: 6px;
+        margin-top: 6px;
+      }
+
+      button {
+        min-height: 38px;
+        font-size: 10px;
+        letter-spacing: .1em;
+      }
+
+      button.secondary { width: 44px; }
+      .formula, .lamp-bank, .dial { display: none; }
+
+      .gauge-body {
+        display: block;
+        min-height: 0;
+        padding: 7px 10px 8px;
+      }
+
+      .readout {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto auto;
+        column-gap: 12px;
+        align-items: center;
+        text-align: left;
+      }
+
+      .readout-label { display: none; }
+
+      .angle-value {
+        grid-row: 1 / 3;
+        font-size: 35px;
+      }
+
+      .charge-value {
+        align-self: end;
+        margin: 0;
+        font-size: 11px;
+        line-height: 1.25;
+      }
+
+      .system-message {
+        align-self: start;
+        min-height: 0;
+        margin: 2px 0 0;
+        font-size: 8px;
+        line-height: 1.35;
+      }
+
+      .solution-panel { margin: 0 9px 8px; }
+
+      .solution-head {
+        display: block;
+        padding: 6px 8px;
+      }
+
+      .solution-head h2 {
+        font-size: 8px;
+        letter-spacing: .1em;
+      }
+
+      .distance-repeat { display: none; }
+      .solutions { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+      .solution {
+        min-height: 76px;
+        padding: 8px 7px 7px;
+      }
+
+      .charge-number { font-size: 8px; letter-spacing: .06em; }
+      .mini-lamp { width: 6px; height: 6px; }
+
+      .solution-angle {
+        margin: 6px 0 4px;
+        font-size: clamp(18px, 5.5vw, 22px);
+      }
+
+      .solution-range,
+      .solution-status {
+        font-size: 7px;
+        line-height: 1.35;
+        white-space: nowrap;
+      }
+
+      .solution-status { margin-top: 2px; }
+
+      .recommended-tag {
+        margin-top: 4px;
+        padding: 2px 3px;
+        font-size: 6px;
+      }
+
+      footer { display: none; }
+      .scanline { height: 42px; }
+    }
+
+    @media (max-width: 360px) {
+      h1 { font-size: 22px; }
+      .solution { padding-inline: 5px; }
+      .solution-angle { font-size: 18px; }
+      .solution-range, .solution-status { font-size: 6.5px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -673,7 +835,7 @@
             <form id="calculator-form" novalidate>
               <label for="distance">目標距離｜TARGET DISTANCE（小數後 2 位）</label>
               <div class="input-shell">
-                <input id="distance" name="distance" type="number" min="0.01" max="30" step="0.01" inputmode="decimal" placeholder="07.50" autocomplete="off" required autofocus>
+                <input id="distance" name="distance" type="number" min="0.01" max="30" step="0.01" inputmode="decimal" placeholder="07.50" autocomplete="off" required>
                 <span class="unit">KM</span>
               </div>
               <div class="button-row">
